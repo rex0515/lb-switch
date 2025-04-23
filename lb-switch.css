@@ -1,6 +1,7 @@
 :root {
-	--scale: 100px;
+	--scale: 500px;
 	--circle-scale: 0.9;
+	--animation-speed: 0.125s;
 
 	--height: var(--scale);
 	--width: calc(var(--scale) * 2);
@@ -12,7 +13,7 @@
 
 	border-radius: 999999px;
 
-	background-color: #e0e0e0;
+	background-color: #ffffff;
 
 	display: flex;
 	align-items: center;
@@ -31,8 +32,8 @@
 	width: calc(var(--height) * var(--circle-scale));
 	height: calc(var(--height) * var(--circle-scale));
 
-	margin-left: calc(var(--height) * (1 - var(--circle-scale)));
-	margin-right: calc(var(--height) * (1 - var(--circle-scale)));
+	margin-left: calc(var(--height) * (1 - var(--circle-scale)) / 2);
+	margin-right: calc(var(--height) * (1 - var(--circle-scale)) / 2);
 
 	border-radius: 999999px;
 
@@ -40,17 +41,18 @@
 }
 
 /* animations */
+
 .lb-switch.on > .lb-switch-circle {
-	animation: 0.25s ease-in 1 normal lb-switch-turn-on;
+	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-on;
 }
 
 .lb-switch.off > .lb-switch-circle {
-	animation: 0.25s ease-in 1 normal lb-switch-turn-off;
+	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-off;
 }
 
 @keyframes lb-switch-turn-on {
 	from {
-		right: calc(var(--height) * var(--circle-scale));
+		right: calc(var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);
 	}
 
 	to {
@@ -60,7 +62,7 @@
 
 @keyframes lb-switch-turn-off {
 	from {
-		right: calc(-1 * var(--height) * var(--circle-scale));
+		right: calc(-1 * var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);
 	}
 
 	to {
