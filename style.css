@@ -16,8 +16,8 @@ body {
 
 	color-scheme: light dark;
 
-	background-color: light-dark(#e0e0e0, #303030);
-	color: light-dark(#303030, #e0e0e0);
+	background-color: light-dark(#e0e0e0, #101010);
+	color: light-dark(#202020, #e0e0e0);
 }
 
 #wrapper {

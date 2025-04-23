@@ -1,7 +1,7 @@
 :root {
 	--scale: 500px;
 	--circle-scale: 0.85;
-	--animation-speed: 0.125s;
+	--animation-speed: 6.125s;
 
 	/*--sun-color: radial-gradient(ellipse at top, rgba(251, 79, 19, 1) 13%, rgba(252, 132, 44, 1) 38%, rgba(253, 180, 67, 1) 76%, rgba(254, 226, 90, 1) 87%);*/
 	--sun-color: radial-gradient(ellipse at top, #FEE25A 23%, #FDB443 58%, #FC842C 85%, #FB4F13 95%);
@@ -106,8 +106,6 @@
  */
 
 .lb-switch.off {
-	/*justify-content: start;*/
-
 	background: var(--day-weather-color);
 }
 
@@ -142,13 +140,15 @@
  */
 
 .lb-switch.on {
-	/*justify-content: end;*/
-
-	background-color: #fff;
+	background-color: #303030;
 }
 
 .lb-switch.on > .lb-switch-circle {
-	background-color: #000;
+	background-color: #a0a0a9;
+}
+
+.lb-switch.on .cloud {
+	opacity: 0;
 }
 
 .lb-switch.on .cloud, .lb-switch.on .cloud::before, .lb-switch.on .cloud::after {
@@ -170,23 +170,36 @@
 .lb-switch.off > .lb-switch-circle {
 	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-off;
 }
+
+.lb-switch.off .cloud {
+	animation: var(--animation-speed) ease-in 1 normal lb-clouds-turn-on;
+}
 */
 @keyframes lb-switch-turn-on {
 	from {
-		right: calc(var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);
+		left: 0;
 	}
 
 	to {
-		right: 0;
+		left: calc(var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);;
+	}
+}
+
+@keyframes lb-clouds-turn-on {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 100%;
 	}
 }
 
 @keyframes lb-switch-turn-off {
 	from {
-		right: calc(-1 * var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);
+		left: calc(var(--height) * var(--circle-scale) + var(--height) * (1 - var(--circle-scale)));
 	}
 
 	to {
-		right: 0;
+		left: 0;
 	}
 }
