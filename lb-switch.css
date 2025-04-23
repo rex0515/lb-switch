@@ -1,8 +1,14 @@
 :root {
 	--scale: 500px;
-	--circle-scale: 0.9;
+	--circle-scale: 0.85;
 	--animation-speed: 0.125s;
 
+	--sun-color: radial-gradient(ellipse at top, rgba(251, 79, 19, 1) 13%, rgba(252, 132, 44, 1) 38%, rgba(253, 180, 67, 1) 76%, rgba(254, 226, 90, 1) 87%);
+	--day-weather-color: #8fe0f0;
+	--day-cloud-color: #ffffff;
+
+
+	--cloud-size: calc(var(--scale) / 5);
 	--height: var(--scale);
 	--width: calc(var(--scale) * 2);
 }
@@ -13,18 +19,8 @@
 
 	border-radius: 999999px;
 
-	background-color: #ffffff;
-
 	display: flex;
 	align-items: center;
-}
-
-.lb-switch.on {
-	justify-content: end;
-}
-
-.lb-switch.off {
-	justify-content: start;
 }
 
 .lb-switch > .lb-switch-circle {
@@ -36,7 +32,76 @@
 	margin-right: calc(var(--height) * (1 - var(--circle-scale)) / 2);
 
 	border-radius: 999999px;
+}
 
+/* day */
+
+.lb-switch.off {
+	justify-content: start;
+
+	background-color: var(--day-weather-color);
+}
+
+.lb-switch.off > .lb-switch-circle {
+	background: var(--sun-color);
+}
+
+.lb-switch.off > .cloud {
+
+}
+
+/* clouds */
+
+.cloud {
+	width: var(--cloud-size);
+	height: var(--cloud-size);
+	position: relative;
+
+	outline: 1px solid var(--day-cloud-color);
+	border-radius: 999999px;
+
+	background-color: var(--day-cloud-color);
+}
+
+.cloud::before, .cloud::after {
+	content: "";
+	width: 1px;
+	height: 1px;
+
+	position: absolute;
+	bottom: calc(-1 * var(--cloud-size) / 2);
+
+	background-color: var(--day-cloud-color);
+
+	border-top: var(--cloud-size) solid var(--day-cloud-color);
+
+	border-top-left-radius: 99999px;
+	border-top-right-radius: 99999px;
+}
+
+.cloud::before {
+	left: calc(-1 * var(--cloud-size) / 2);
+
+	border-left: var(--cloud-size) solid var(--day-cloud-color);
+	border-bottom-left-radius: 99999px;
+}
+
+.cloud::after {
+	right: calc(-1 * var(--cloud-size) / 2);
+
+	border-right: var(--cloud-size) solid var(--day-cloud-color);
+	border-bottom-right-radius: 99999px;
+}
+
+/* night */
+
+.lb-switch.on {
+	justify-content: end;
+
+	background-color: #fff;
+}
+
+.lb-switch.on > .lb-switch-circle {
 	background-color: #000;
 }
 

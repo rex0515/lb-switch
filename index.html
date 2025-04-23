@@ -10,13 +10,16 @@
 <body>
 <div id="wrapper">
     <h1>Dark mode?</h1>
-    <div class="lb-switch on" onclick="let states=['on','off'];let state=this.classList.contains('on');this.classList.add(states[+state]);this.classList.remove(states[+!state]);this.dispatchEvent(new CustomEvent('onswitched',{detail:{state:state}}));">
+    <div class="lb-switch off" onclick="let states=['on','off'];let state=this.classList.contains('on');this.classList.add(states[+state]);this.classList.remove(states[+!state]);this.dispatchEvent(new CustomEvent('onswitched',{detail:{state:state}}));">
         <div class="lb-switch-circle"></div>
+        <div id="clouds">
+            <div id="cloud-1" class="cloud"></div>
+        </div>
     </div>
 </div>
 <script>
 	document.querySelector(".lb-switch").addEventListener("onswitched", e => {
-		document.body.style.colorScheme = ["dark", "light"][+e.detail.state];
+		//document.body.style.colorScheme = ["dark", "light"][+e.detail.state]; // TODO: uncomment for release
     });
 </script>
 </body>
