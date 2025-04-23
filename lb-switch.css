@@ -3,7 +3,8 @@
 	--circle-scale: 0.85;
 	--animation-speed: 0.125s;
 
-	--sun-color: radial-gradient(ellipse at top, rgba(251, 79, 19, 1) 13%, rgba(252, 132, 44, 1) 38%, rgba(253, 180, 67, 1) 76%, rgba(254, 226, 90, 1) 87%);
+	/*--sun-color: radial-gradient(ellipse at top, rgba(251, 79, 19, 1) 13%, rgba(252, 132, 44, 1) 38%, rgba(253, 180, 67, 1) 76%, rgba(254, 226, 90, 1) 87%);*/
+	--sun-color: radial-gradient(ellipse at top, #FEE25A 23%, #FDB443 58%, #FC842C 85%, #FB4F13 95%);
 	--day-weather-color: linear-gradient(to right, #8fe0f0 50%, hsl(from #8fe0f0 h s calc(l - 30)));
 	--day-cloud-color: #ffffff;
 
@@ -21,7 +22,6 @@
  *					main
  * --------------------------------------
  */
-
 
 .lb-switch {
 	width: var(--width);
@@ -42,6 +42,14 @@
 	margin-right: calc(var(--height) * (1 - var(--circle-scale)) / 2);
 
 	border-radius: 999999px;
+}
+
+.lb-switch.on > .lb-switch-circle {
+	left: calc(var(--height) * var(--circle-scale) + var(--height) * (1 - var(--circle-scale)));
+}
+
+.lb-switch.off > .lb-switch-circle {
+	left: 0;
 }
 
 /*
@@ -98,7 +106,7 @@
  */
 
 .lb-switch.off {
-	justify-content: start;
+	/*justify-content: start;*/
 
 	background: var(--day-weather-color);
 }
@@ -134,7 +142,7 @@
  */
 
 .lb-switch.on {
-	justify-content: end;
+	/*justify-content: end;*/
 
 	background-color: #fff;
 }
@@ -154,7 +162,7 @@
  * 					animations
  * --------------------------------------------
  */
-
+/*
 .lb-switch.on > .lb-switch-circle {
 	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-on;
 }
@@ -162,7 +170,7 @@
 .lb-switch.off > .lb-switch-circle {
 	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-off;
 }
-
+*/
 @keyframes lb-switch-turn-on {
 	from {
 		right: calc(var(--height) * var(--circle-scale) - var(--height) * (1 - var(--circle-scale)) / 2);
