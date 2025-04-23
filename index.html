@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Switch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lb-switch.css">
+</head>
+<body>
+<div id="wrapper">
+    <div class="lb-switch on" onclick="let states=['on','off'];let state=this.classList.contains('on');this.classList.add(states[+state]);this.classList.remove(states[+!state]);">
+        <div class="lb-switch-circle"></div>
+    </div>
+</div>
+</body>
+</html>
