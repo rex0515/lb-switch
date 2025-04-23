@@ -13,7 +13,9 @@
     <div class="lb-switch off" onclick="let states=['on','off'];let state=this.classList.contains('on');this.classList.add(states[+state]);this.classList.remove(states[+!state]);this.dispatchEvent(new CustomEvent('onswitched',{detail:{state:state}}));">
         <div class="lb-switch-circle"></div>
         <div id="clouds">
+            <div id="cloud-0" class="cloud"></div>
             <div id="cloud-1" class="cloud"></div>
+            <div id="cloud-2" class="cloud"></div>
         </div>
     </div>
 </div>

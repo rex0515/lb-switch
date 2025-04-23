@@ -4,14 +4,24 @@
 	--animation-speed: 0.125s;
 
 	--sun-color: radial-gradient(ellipse at top, rgba(251, 79, 19, 1) 13%, rgba(252, 132, 44, 1) 38%, rgba(253, 180, 67, 1) 76%, rgba(254, 226, 90, 1) 87%);
-	--day-weather-color: #8fe0f0;
+	--day-weather-color: linear-gradient(to right, #8fe0f0 50%, hsl(from #8fe0f0 h s calc(l - 30)));
 	--day-cloud-color: #ffffff;
 
+	--day-cloud-0-pos: 250%;
+	--day-cloud-1-pos: -50%;
+	--day-cloud-2-pos: 200%;
 
 	--cloud-size: calc(var(--scale) / 5);
 	--height: var(--scale);
 	--width: calc(var(--scale) * 2);
 }
+
+/*
+ * --------------------------------------
+ *					main
+ * --------------------------------------
+ */
+
 
 .lb-switch {
 	width: var(--width);
@@ -34,33 +44,19 @@
 	border-radius: 999999px;
 }
 
-/* day */
-
-.lb-switch.off {
-	justify-content: start;
-
-	background-color: var(--day-weather-color);
-}
-
-.lb-switch.off > .lb-switch-circle {
-	background: var(--sun-color);
-}
-
-.lb-switch.off > .cloud {
-
-}
-
-/* clouds */
+/*
+ * ----------------------------------------
+ * 					clouds
+ * ----------------------------------------
+ */
 
 .cloud {
 	width: var(--cloud-size);
 	height: var(--cloud-size);
 	position: relative;
 
-	outline: 1px solid var(--day-cloud-color);
+	outline: 1px solid;
 	border-radius: 999999px;
-
-	background-color: var(--day-cloud-color);
 }
 
 .cloud::before, .cloud::after {
@@ -71,10 +67,7 @@
 	position: absolute;
 	bottom: calc(-1 * var(--cloud-size) / 2);
 
-	background-color: var(--day-cloud-color);
-
-	border-top: var(--cloud-size) solid var(--day-cloud-color);
-
+	border-top: var(--cloud-size) solid;
 	border-top-left-radius: 99999px;
 	border-top-right-radius: 99999px;
 }
@@ -82,18 +75,63 @@
 .cloud::before {
 	left: calc(-1 * var(--cloud-size) / 2);
 
-	border-left: var(--cloud-size) solid var(--day-cloud-color);
+	border-left: var(--cloud-size) solid;
 	border-bottom-left-radius: 99999px;
 }
 
 .cloud::after {
 	right: calc(-1 * var(--cloud-size) / 2);
 
-	border-right: var(--cloud-size) solid var(--day-cloud-color);
+	border-right: var(--cloud-size) solid;
 	border-bottom-right-radius: 99999px;
 }
 
-/* night */
+.lb-switch .cloud {
+	left: 0;
+	bottom: 0;
+}
+
+/*
+ * -------------------------------------
+ * 					day
+ * -------------------------------------
+ */
+
+.lb-switch.off {
+	justify-content: start;
+
+	background: var(--day-weather-color);
+}
+
+.lb-switch.off > .lb-switch-circle {
+	background: var(--sun-color);
+}
+
+.lb-switch.off .cloud, .lb-switch.off .cloud::before, .lb-switch.off .cloud::after {
+	outline-color: var(--day-cloud-color);
+	background-color: var(--day-cloud-color);
+	border-color: var(--day-cloud-color);
+}
+
+/* cloud positions */
+
+.lb-switch.off #cloud-0 {
+	left: var(--day-cloud-0-pos);
+}
+
+.lb-switch.off #cloud-1 {
+	left: var(--day-cloud-1-pos);
+}
+
+.lb-switch.off #cloud-2 {
+	left: var(--day-cloud-2-pos);
+}
+
+/*
+ * ---------------------------------------
+ *					night
+ * ---------------------------------------
+ */
 
 .lb-switch.on {
 	justify-content: end;
@@ -105,7 +143,17 @@
 	background-color: #000;
 }
 
-/* animations */
+.lb-switch.on .cloud, .lb-switch.on .cloud::before, .lb-switch.on .cloud::after {
+	outline-color: #303030;
+	background-color: #303030;
+	border-color: #303030;
+}
+
+/*
+ * --------------------------------------------
+ * 					animations
+ * --------------------------------------------
+ */
 
 .lb-switch.on > .lb-switch-circle {
 	animation: var(--animation-speed) ease-in 1 normal lb-switch-turn-on;
