@@ -1,7 +1,7 @@
 :root {
 	--scale: 200px;
 	--circle-scale: 0.85;
-	--animation-speed: 3.125s;
+	--animation-speed: 0.5s;
 
 	--button-border-style: calc(var(--scale) / 50) solid;
 
@@ -10,7 +10,8 @@
 	--day-weather-color: linear-gradient(to right, #8fe0f0 50%, hsl(from #8fe0f0 h s calc(l - 30)));
 	--day-cloud-color: #ffffff;
 
-	--night-border-color: #ffffff;
+	--moon-color: #a0a0a9;
+	--night-border-color: #a0a0a9;
 	--night-weather-color: linear-gradient(to right, #101010 10%, #303030);
 	--night-cloud-color: #6f6f6f;
 
@@ -246,7 +247,7 @@
 	background: var(--sun-color);
 }
 
-.lb-switch.off .cloud, .lb-switch.off .cloud::before, .lb-switch.off .cloud::after {
+.lb-switch .cloud, .lb-switch .cloud::before, .lb-switch .cloud::after {
 	outline-color: var(--day-cloud-color);
 	background-color: var(--day-cloud-color);
 	border-color: var(--day-cloud-color);
@@ -254,20 +255,21 @@
 
 /* cloud positions */
 
-.lb-switch.off #cloud-0 {
+.lb-switch #cloud-0 {
 	left: var(--day-cloud-0-pos);
 }
 
-.lb-switch.off #cloud-1 {
+.lb-switch #cloud-1 {
 	left: var(--day-cloud-1-pos);
 }
 
-.lb-switch.off #cloud-2 {
+.lb-switch #cloud-2 {
 	left: var(--day-cloud-2-pos);
 }
 
-.lb-switch.off #cloud-3 {
+.lb-switch #cloud-3 {
 	position: absolute;
+	margin-bottom: 50%;
 	opacity: 0;
 }
 
@@ -283,7 +285,7 @@
 }
 
 .lb-switch.on .lb-switch-circle {
-	background: #a0a0a9;
+	background: var(--moon-color);
 }
 
 .lb-switch.on .cloud {
@@ -293,13 +295,6 @@
 .lb-switch.on #cloud-3 {
 	opacity: 100%;
 	left: 150%;
-	margin-bottom: 120%;
-}
-
-.lb-switch.on .cloud, .lb-switch.on .cloud::before, .lb-switch.on .cloud::after {
-	outline-color: var(--night-cloud-color);
-	background-color: var(--night-cloud-color);
-	border-color: var(--night-cloud-color);
 }
 
 .lb-switch #cloud-3, .lb-switch #cloud-3::before, .lb-switch #cloud-3::after {
@@ -338,6 +333,9 @@
 	animation: var(--animation-speed) ease-in 1 normal lb-fade-in;
 }
 
+
+
+
 .lb-switch.off {
 	animation: var(--animation-speed) ease-in 1 normal lb-main-switch-turn-off;
 }
@@ -366,21 +364,20 @@
 
 @keyframes lb-main-switch-turn-on {
 	from {
-		outline-color: var(--day-border-color);
+		border-color: var(--day-border-color);
 	}
 	to {
-		outline-color: var(--night-border-color);
+		border-color: var(--night-border-color);
 	}
 }
 
 @keyframes lb-main-switch-turn-off {
-	0% {
+	from {
+		border-color: var(--night-border-color);
 		background: var(--night-weather-color);
 	}
-	99% {
-		background-color: var(--night-weather-color);
-	}
-	100% {
+	to {
+		border-color: var(--day-border-color);
 		background: var(--night-weather-color);
 	}
 }
@@ -390,20 +387,35 @@
 @keyframes lb-switch-turn-on {
 	from {
 		left: 0;
-		background: #FDB443;
+		background: var(--sun-color);
+		filter: contrast(1) grayscale(0);
+	}
+	90% {
+		background: var(--sun-color);
+		filter: contrast(0) grayscale(1);
 	}
 	to {
+		background: radial-gradient(var(--moon-color), var(--moon-color));
 		left: calc(var(--height) * var(--circle-scale) + var(--height) * (1 - var(--circle-scale)));
-		background: #a0a0a9;
+		filter: grayscale(0.8);
 	}
 }
 
 @keyframes lb-switch-turn-off {
 	from {
 		left: calc(var(--height) * var(--circle-scale) + var(--height) * (1 - var(--circle-scale)));
+		background: radial-gradient(var(--moon-color), var(--moon-color));
+		filter: grayscale(0);
 	}
-
+	5% {
+		filter: grayscale(0.6);
+	}
+	10% {
+		background: var(--sun-color);
+		filter: contrast(0) grayscale(1);
+	}
 	to {
+		background: var(--sun-color);
 		left: 0;
 	}
 }
@@ -440,10 +452,11 @@
 
 @keyframes lb-clouds-turn-on {
 	from {
-		bottom: 0;
+		opacity: 1;
 	}
 	to {
-		bottom: var(--scale);
+		transform: translateY(calc(-1 * var(--scale)));
+		opacity: 1;
 	}
 }
 
@@ -455,6 +468,8 @@
 		bottom: 0;
 	}
 }
+
+
 
 @keyframes lb-switch-cloud-turn-on {
 	from {
