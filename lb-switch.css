@@ -1,5 +1,5 @@
 :root {
-	--scale: 200px;
+	--scale: min(20dvw, 300px);
 	--circle-scale: 0.85;
 	--animation-speed: 0.5s;
 
@@ -41,7 +41,6 @@
 
 	display: flex;
 	align-items: center;
-	/*clip-path: xywh(-10px -10px 1020px 520px 999999px);*/
 }
 
 .lb-switch-inner {
@@ -52,6 +51,8 @@
 
 	display: flex;
 	align-items: center;
+	border-radius: 999999px;
+
 	clip-path: xywh(0 0 var(--width) var(--height) round 999999px);
 }
 
@@ -61,7 +62,7 @@
 	position: absolute;
 
 	opacity: 0;
-	left: -200px;
+	left: calc(-1 * var(--scale));
 	bottom: 0;
 
 	display: block;
