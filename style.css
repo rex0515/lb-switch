@@ -16,7 +16,7 @@ body {
 
 	color-scheme: light dark;
 
-	background-color: light-dark(#e0e0e0, #101010);
+	background-color: light-dark(#e0e0e0, #0a0a0a);
 	color: light-dark(#202020, #e0e0e0);
 }
 
