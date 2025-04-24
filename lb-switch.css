@@ -51,7 +51,7 @@
 
 	display: flex;
 	align-items: center;
-	/*clip-path: xywh(0 0 var(--width) var(--height) round 999999px);*/
+	clip-path: xywh(0 0 var(--width) var(--height) round 999999px);
 }
 
 .lb-switch-inner::before {
@@ -60,18 +60,21 @@
 	position: absolute;
 
 	opacity: 0.5;
-	left: -50%;
-	bottom: 20px;
+	left: -200px;
+	bottom: 0;
 
 	display: block;
 
-	width: calc(var(--width));
+	width: calc(var(--width) * 2);
 	height: var(--width);
 
-	background: var(--day-weather-color);
-	/*box-shadow: -100px 0 0 0 #8fe0f0, 100px 0 0 0 hsl(from #8fe0f0 h s calc(l - 30));*/
-	border-left: 200px solid #8fe0f0;
-	border-right: 200px solid hsl(from #8fe0f0 h s calc(l - 30));
+	background: linear-gradient(
+			to right,
+			#8fe0f0 25%,
+			#8fe0f0 50%,
+			hsl(from #8fe0f0 h s calc(l - 30)) 75%,
+			hsl(from #8fe0f0 h s calc(l - 30)) 100%
+	);
 }
 
 .lb-switch .lb-switch-circle {
