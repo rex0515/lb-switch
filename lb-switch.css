@@ -170,12 +170,12 @@
 
 	background: radial-gradient(
 			closest-side circle at center,
-			#ffffffff 15%,
+			#ffffff9f 15%,
 			#ffffff50 30%,
 			#ffffff30 40%,
 			transparent 100%
 	);
-	filter: blur(calc(var(--scale) / 100));
+	filter: blur(calc(var(--scale) / 350));
 	border-radius: 99999999px;
 }
 
@@ -194,8 +194,8 @@
 	left: -50%;
 	top: 50%;
 
-	border-left: calc(var(--scale) / 10) solid #ffffffff;
-	border-right: calc(var(--scale) / 10) solid #ffffffff;
+	border-left: calc(var(--scale) / 10) solid #ffffff50;
+	border-right: calc(var(--scale) / 10) solid #ffffff50;
 
 	border-bottom: 1px solid #ffffffff;
 }
@@ -204,8 +204,8 @@
 	left: 50%;
 	top: -50%;
 
-	border-bottom: calc(var(--scale) / 10) solid #ffffffff;
-	border-top: calc(var(--scale) / 10) solid #ffffffff;
+	border-bottom: calc(var(--scale) / 10) solid #ffffff50;
+	border-top: calc(var(--scale) / 10) solid #ffffff50;
 
 	border-left: 1px solid #ffffffff;
 }
